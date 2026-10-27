@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FoodRescue helps students find surplus food from their college canteen.">
+    <title>FoodRescue | Good food, less waste</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+        <nav class="navigation container" aria-label="Main navigation">
+            <a class="brand" href="#home" aria-label="FoodRescue home">
+                <span class="brand-mark" aria-hidden="true">F</span>
+                <span>Food<span class="brand-highlight">Rescue</span></span>
+            </a>
+
+            <div class="navigation-links">
+                <a class="navigation-link active" href="#home">Home</a>
+                <a class="navigation-link" href="#available-food">Available Food</a>
+                <a class="navigation-button" href="#add-food">Add Food</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="hero-section" id="home">
+            <div class="hero container">
+                <div class="hero-copy">
+                    <p class="eyebrow"><span aria-hidden="true">✦</span> A little less waste, a lot more good</p>
+                    <h1>Good food deserves <span>another chance.</span></h1>
+                    <p class="hero-description">
+                        Find surplus food from your campus canteen and help make sure it gets enjoyed, not wasted.
+                    </p>
+                    <a class="primary-button" href="#available-food">
+                        Explore food <span aria-hidden="true">→</span>
+                    </a>
+                    <p class="hero-note">Fresh finds from your campus, all in one place.</p>
+                </div>
+
+                <div class="hero-visual" aria-label="Illustration of a bowl of fresh food">
+                    <div class="visual-shape"></div>
+                    <div class="food-illustration" aria-hidden="true">
+                        <span class="food-leaf leaf-one"></span>
+                        <span class="food-leaf leaf-two"></span>
+                        <span class="food-leaf leaf-three"></span>
+                        <span class="food-tomato tomato-one"></span>
+                        <span class="food-tomato tomato-two"></span>
+                        <span class="food-carrot"></span>
+                        <span class="food-pea pea-one"></span>
+                        <span class="food-pea pea-two"></span>
+                        <span class="food-pea pea-three"></span>
+                        <div class="food-bowl"></div>
+                    </div>
+                    <div class="visual-tag">
+                        <span class="tag-icon" aria-hidden="true">♥</span>
+                        <span><strong>Good food</strong><br>Better shared</span>
+                    </div>
+                    <span class="sparkle sparkle-one" aria-hidden="true">✳</span>
+                    <span class="sparkle sparkle-two" aria-hidden="true">✦</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard-section container" aria-labelledby="dashboard-heading">
+            <div class="section-heading dashboard-heading">
+                <div>
+                    <p class="eyebrow">Small actions add up</p>
+                    <h2 id="dashboard-heading">Our campus impact</h2>
+                </div>
+                <p class="sample-note">Sample preview values</p>
+            </div>
+
+            <div class="stats-grid">
+                <article class="stat-card">
+                    <span class="stat-icon icon-green" aria-hidden="true">▤</span>
+                    <p class="stat-label">Food Listed</p>
+                    <p class="stat-value">128</p>
+                    <p class="stat-detail">surplus portions shared</p>
+                </article>
+                <article class="stat-card">
+                    <span class="stat-icon icon-peach" aria-hidden="true">♡</span>
+                    <p class="stat-label">Food Claimed</p>
+                    <p class="stat-value" id="claimed-count">0</p>
+                    <p class="stat-detail">items claimed in this demo</p>
+                </article>
+                <article class="stat-card">
+                    <span class="stat-icon icon-yellow" aria-hidden="true">✿</span>
+                    <p class="stat-label">Food Saved</p>
+                    <p class="stat-value">42 <span>kg</span></p>
+                    <p class="stat-detail">kept out of the bin</p>
+                </article>
+                <article class="stat-card">
+                    <span class="stat-icon icon-lilac" aria-hidden="true">◷</span>
+                    <p class="stat-label">Expiring Soon</p>
+                    <p class="stat-value">3</p>
+                    <p class="stat-detail">items to check today</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="food-section" id="available-food" aria-labelledby="food-heading">
+            <div class="container">
+                <div class="section-heading food-heading">
+                    <div>
+                        <p class="eyebrow">From the campus canteen</p>
+                        <h2 id="food-heading">Available food</h2>
+                    </div>
+                    <p class="food-intro">Browse today's surplus picks and find something good to enjoy.</p>
+                </div>
+
+                <form class="food-controls" id="food-search-form" action="index.html#available-food" method="get">
+                    <div class="search-field">
+                        <label for="food-search">Search food</label>
+                        <input type="search" id="food-search" name="foodSearch" placeholder="Search by food name">
+                    </div>
+                    <div class="category-field">
+                        <label for="category-filter">Category</label>
+                        <select id="category-filter" name="category">
+                            <option value="All">All categories</option>
+                            <option value="Meals">Meals</option>
+                            <option value="Snacks">Snacks</option>
+                            <option value="Fruits">Fruits</option>
+                        </select>
+                    </div>
+                    <button class="filter-button" type="submit">Apply filters</button>
+                </form>
+
+                <p class="food-loading-message" id="food-loading-message" role="status" aria-live="polite">
+                    Loading food items...
+                </p>
+                <div class="food-grid" id="food-list" aria-live="polite"></div>
+                <p class="empty-message" id="empty-message" hidden>No food items found.</p>
+
+                <section class="add-food-panel" id="add-food" aria-labelledby="add-food-heading">
+                    <div class="add-food-heading">
+                        <p class="eyebrow">Share surplus with your campus</p>
+                        <h2 id="add-food-heading">Add surplus food</h2>
+                        <p>Enter the food details so students know what is available and where to pick it up.</p>
+                    </div>
+
+                    <form id="add-food-form" action="#add-food" method="post">
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <label for="food-name">Food name</label>
+                                <input type="text" id="food-name" name="foodName" required maxlength="60">
+                            </div>
+                            <div class="form-field">
+                                <label for="food-category">Category</label>
+                                <select id="food-category" name="category" required>
+                                    <option value="">Choose a category</option>
+                                    <option value="Meals">Meals</option>
+                                    <option value="Snacks">Snacks</option>
+                                    <option value="Fruits">Fruits</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="food-quantity">Quantity (portions)</label>
+                                <input type="number" id="food-quantity" name="quantity" min="1" step="1" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="pickup-location">Pickup location</label>
+                                <input type="text" id="pickup-location" name="pickupLocation" required maxlength="60">
+                            </div>
+                            <div class="form-field">
+                                <label for="available-until">Available until</label>
+                                <input type="time" id="available-until" name="availableUntil" required>
+                            </div>
+                        </div>
+
+                        <button class="primary-button form-submit" type="submit">Add food</button>
+                        <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+                    </form>
+                </section>
+
+                <section class="discount-demo" id="discount-demo" aria-labelledby="discount-demo-heading">
+                    <div class="discount-demo-heading">
+                        <svg class="discount-demo-icon" viewBox="0 0 32 32" role="img" aria-labelledby="discount-icon-title">
+                            <title id="discount-icon-title">FoodRescue leaf</title>
+                            <path d="M26 5C16 5 8 8 7 16c-.5 4 2 7 6 7 8-1 11-9 13-18ZM8 27c3-7 8-11 14-15"
+                                fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+                        </svg>
+                        <div>
+                            <p class="eyebrow">Academic demonstration</p>
+                            <h2 id="discount-demo-heading">Discount calculation example</h2>
+                        </div>
+                    </div>
+                    <p class="discount-demo-note">This programming example is not a FoodRescue payment feature.</p>
+                    <form id="discount-demo-form" action="#discount-demo" method="get">
+                        <label for="spending-amount">Example spending amount</label>
+                        <div class="discount-demo-controls">
+                            <input type="number" id="spending-amount" name="spending" min="0" step="any" value="750" required>
+                            <button class="filter-button" type="submit">Calculate example</button>
+                        </div>
+                        <p class="discount-result" id="discount-result" role="status" aria-live="polite"></p>
+                    </form>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content container">
+            <a class="brand footer-brand" href="#home">
+                <span class="brand-mark" aria-hidden="true">F</span>
+                <span>Food<span class="brand-highlight">Rescue</span></span>
+            </a>
+            <p>Good food, shared with care. Made for a more thoughtful campus.</p>
+            <span class="footer-credit">Small steps. Less waste.</span>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
