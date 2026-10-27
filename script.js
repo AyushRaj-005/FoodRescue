@@ -1,4 +1,4 @@
-let foodItems = [];
+const foodItems = [];
 
 const foodStorageKey = "foodRescueFoodItems";
 const foodList = document.querySelector("#food-list");
@@ -43,6 +43,13 @@ function saveFoodItems(items) {
         foodLoadingMessage.classList.add("load-error");
         foodLoadingMessage.hidden = false;
         return false;
+    }
+}
+
+function replaceFoodItems(items) {
+    foodItems.splice(0, foodItems.length);
+    for (const foodItem of items) {
+        foodItems.push(foodItem);
     }
 }
 
@@ -225,7 +232,7 @@ foodList.addEventListener("click", function (event) {
         return;
     }
 
-    foodItems = updatedFoodItems;
+    replaceFoodItems(updatedFoodItems);
     displayFoodItems();
 });
 
@@ -308,7 +315,7 @@ addFoodForm.addEventListener("submit", function (event) {
         return;
     }
 
-    foodItems = updatedFoodItems;
+    replaceFoodItems(updatedFoodItems);
 
     addFoodForm.reset();
     searchInput.value = "";
@@ -338,7 +345,7 @@ async function initializeFoodItems() {
                     savedFoodIds.add(savedFoodItem.id);
                 }
 
-                foodItems = savedFoodItems;
+                replaceFoodItems(savedFoodItems);
                 hasSavedFoodItems = true;
             }
         } catch (error) {
@@ -371,7 +378,7 @@ async function initializeFoodItems() {
                     foodItemId += 1;
                 }
 
-                foodItems = [...foodItems, { ...initialFoodItem, id: foodItemId }];
+                replaceFoodItems([...foodItems, { ...initialFoodItem, id: foodItemId }]);
             }
 
             saveFoodItems(foodItems);
